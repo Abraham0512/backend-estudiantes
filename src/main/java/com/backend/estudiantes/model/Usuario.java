@@ -2,16 +2,20 @@ package com.backend.estudiantes.model;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "usuario")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "nombre")
     private String nombre;
@@ -20,7 +24,7 @@ public class Usuario {
     private String apellido;
 
     @Column(name = "emial" , nullable = false, unique = true)
-    private String emial;
+    private String email;
 
     @Column(name = "password", nullable = false)
     private String password;
@@ -32,4 +36,12 @@ public class Usuario {
     @Column(name = "activo", columnDefinition = "boolean default true")
     private boolean activo = true;
 
+    public Usuario(String nombre, String apellido, String email, String password, Rol rol) {
+
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.password = password;
+        this.rol = rol;
+    }
 }
